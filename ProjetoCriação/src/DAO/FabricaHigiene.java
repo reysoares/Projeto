@@ -21,6 +21,5 @@ public class FabricaHigiene {
 		produto.setPreco(preco);
 		produto.setTipo(marca);
 		new ProdutoDAO().adicionarProduto(produto);
-		new Observador().notificar(produto);
 	}
 }

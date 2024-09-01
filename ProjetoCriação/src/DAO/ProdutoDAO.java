@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import Entity.Produto;
+import view.Observador;
 
 public class ProdutoDAO {
 
@@ -22,6 +23,8 @@ public class ProdutoDAO {
 	
 			ps.execute();
 			ps.close();
+			
+			new Observador().notificar(produto);
 
 		}catch (SQLException e){
 			e.printStackTrace();

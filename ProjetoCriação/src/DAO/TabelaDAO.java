@@ -1,19 +1,23 @@
 package DAO;
 
 import java.sql.Connection;
+
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-class TabelaDAO {
-	
-	public List<String[]> getTabela(){
-		
-		List<String[]> data = new ArrayList<>();
-        try (Connection conn = Conexao.getConexao();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * produtos")) {
+public class TabelaDAO {
+
+    public static List<String[]> getTabela() {
+        List<String[]> data = new ArrayList<>();
+        String sql = "SELECT * FROM projetopoo.produtos";
+
+        try {
+        	Connection conn = Conexao.getConexao();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
                 String[] row = new String[4];
@@ -23,10 +27,14 @@ class TabelaDAO {
                 row[3] = rs.getString(4);
                 data.add(row);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+            
+            rs.close();
+            stmt.close();
+            
+        } catch (SQLException e) {
+            e.printStackTrace(); // Log or handle the SQL exception
         }
+        
         return data;
     }
-	
 }

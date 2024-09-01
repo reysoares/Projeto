@@ -17,7 +17,6 @@ public class SorveteDAO {
 	public void pedirSorvete(String sabor, String calda, String granulado, double preco) {
 		Sorvete sorvete = criarSorvete(sabor, calda, granulado, preco);
 		new ProdutoDAO().adicionarProduto(sorvete);
-		new Observador().notificar(sorvete);
 		
 	}
 }

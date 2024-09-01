@@ -19,7 +19,6 @@ public class PizzaDAO {
 	public void pedirPizza(String massa, String molho, String sabor, double preco) {
 		Pizza pizza = criarPizza(massa, molho, sabor, preco);
 		new ProdutoDAO().adicionarProduto(pizza);
-		new Observador().notificar(pizza);
 	}
 	
 

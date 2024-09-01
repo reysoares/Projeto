@@ -2,12 +2,15 @@ package Controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import DAO.FabricaHigiene;
 import DAO.PizzaDAO;
 import DAO.SorveteDAO;
+import DAO.TabelaDAO;
 import view.TelaPizza;
 import view.TelaShampoo;
 import view.TelaSorvete;
@@ -21,6 +24,7 @@ public class ButtonsController implements ActionListener{
 	FabricaHigiene factory = new FabricaHigiene();
 	PizzaDAO pizzaBuilder = new PizzaDAO();
 	SorveteDAO sorveteBuilder = new SorveteDAO();
+
 	
 	//Telas
 	private TelaCriacao telaCriacao;
@@ -63,7 +67,7 @@ public class ButtonsController implements ActionListener{
 		if(cmd.equals("openCremeDental")){
 			new TelaCremeDental().setLocationRelativeTo(null);
 		}
-		if(cmd.equals("openEstoque")) {
+		if(cmd.equals("openEstoque")){
 			new TelaEstoque().setLocationRelativeTo(null);
 		}
 		
@@ -81,7 +85,7 @@ public class ButtonsController implements ActionListener{
 			telaCreme.dispose();
 		}
 		if(cmd.equals("VoltarEstoque")) {
-			telaEstoque.dispose();
+			telaEstoque.setVisible(false);
 		}
 		
 		//Criar Produtos
