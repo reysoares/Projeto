@@ -1,8 +1,7 @@
 package DAO;
 
-import javax.swing.JOptionPane;
-
 import Entity.Pizza;
+import view.Observador;
 
 public class PizzaDAO {
 	
@@ -20,7 +19,7 @@ public class PizzaDAO {
 	public void pedirPizza(String massa, String molho, String sabor, double preco) {
 		Pizza pizza = criarPizza(massa, molho, sabor, preco);
 		new ProdutoDAO().adicionarProduto(pizza);
-		JOptionPane.showMessageDialog(null, "Pizza de "+pizza.getTipo()+ " foi Adicionada!");
+		new Observador().notificar(pizza);
 	}
 	
 

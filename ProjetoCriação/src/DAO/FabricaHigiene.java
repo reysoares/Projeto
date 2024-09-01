@@ -1,9 +1,9 @@
 package DAO;
-import javax.swing.JOptionPane;
 
 import Entity.CremeDental;
 import Entity.Produto;
 import Entity.Shampoo;
+import view.Observador;
 
 //Factory Method
 public class FabricaHigiene {
@@ -21,6 +21,6 @@ public class FabricaHigiene {
 		produto.setPreco(preco);
 		produto.setTipo(marca);
 		new ProdutoDAO().adicionarProduto(produto);
-		JOptionPane.showMessageDialog(null, produto.getNome()+" "+marca+" foi adicionado!");
+		new Observador().notificar(produto);
 	}
 }

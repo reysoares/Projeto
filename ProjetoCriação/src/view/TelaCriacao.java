@@ -87,6 +87,7 @@ public class TelaCriacao extends JFrame {
 		contentPane.add(btnSair);
 		
 		JButton btnExibirEstoque = new JButton("Exibir Estoque");
+		btnExibirEstoque.setActionCommand("openEstoque");
 		btnExibirEstoque.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnExibirEstoque.setBackground(new Color(214, 214, 214));
 		btnExibirEstoque.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -107,6 +108,8 @@ public class TelaCriacao extends JFrame {
 		btnSorvete.addActionListener(btnController);
 		btnShampoo.addActionListener(btnController);
 		btnCremeDental.addActionListener(btnController);
+		btnExibirEstoque.addActionListener(btnController);
+		
 		
 	}
 }

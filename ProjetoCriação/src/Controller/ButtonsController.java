@@ -2,12 +2,9 @@ package Controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JComboBox;
-import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
-
 import DAO.FabricaHigiene;
 import DAO.PizzaDAO;
 import DAO.SorveteDAO;
@@ -16,6 +13,7 @@ import view.TelaShampoo;
 import view.TelaSorvete;
 import view.TelaCremeDental;
 import view.TelaCriacao;
+import view.TelaEstoque;
 
 public class ButtonsController implements ActionListener{
 	
@@ -30,6 +28,7 @@ public class ButtonsController implements ActionListener{
 	private TelaSorvete telaSorvete;
 	private TelaShampoo telaShampoo;
 	private TelaCremeDental telaCreme;
+	private TelaEstoque telaEstoque;
 	
 	// Preço e Tipo/Sabor dos produtos
 	private JFormattedTextField tfPreco;
@@ -63,6 +62,9 @@ public class ButtonsController implements ActionListener{
 		if(cmd.equals("openCremeDental")){
 			new TelaCremeDental().setLocationRelativeTo(null);
 		}
+		if(cmd.equals("openEstoque")) {
+			new TelaEstoque().setLocationRelativeTo(null);
+		}
 		
 		//Fechar as telas
 		if(cmd.equals("VoltarPizza")){
@@ -76,6 +78,9 @@ public class ButtonsController implements ActionListener{
 		}
 		if(cmd.equals("VoltarCremeDental")){
 			telaCreme.dispose();
+		}
+		if(cmd.equals("VoltarEstoque")) {
+			telaEstoque.dispose();
 		}
 		
 		//Criar Produtos
@@ -178,6 +183,14 @@ public class ButtonsController implements ActionListener{
 
 	public void setCbGranulado(JComboBox cbGranulado) {
 		this.cbGranulado = cbGranulado;
+	}
+
+	public TelaEstoque getTelaEstoque() {
+		return telaEstoque;
+	}
+
+	public void setTelaEstoque(TelaEstoque telaEstoque) {
+		this.telaEstoque = telaEstoque;
 	}
 
 

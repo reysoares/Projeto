@@ -1,8 +1,7 @@
 package DAO;
 
-import javax.swing.JOptionPane;
-
 import Entity.Sorvete;
+import view.Observador;
 
 public class SorveteDAO {
 	
@@ -18,7 +17,7 @@ public class SorveteDAO {
 	public void pedirSorvete(String sabor, String calda, String granulado, double preco) {
 		Sorvete sorvete = criarSorvete(sabor, calda, granulado, preco);
 		new ProdutoDAO().adicionarProduto(sorvete);
-		JOptionPane.showMessageDialog(null, "Sorvete de "+sorvete.getTipo()+" foi Adicionado!");
+		new Observador().notificar(sorvete);
 		
 	}
 }
