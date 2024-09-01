@@ -30,6 +30,7 @@ public class ButtonsController implements ActionListener{
 	private TelaCremeDental telaCreme;
 	private TelaEstoque telaEstoque;
 	
+	
 	// Preço e Tipo/Sabor dos produtos
 	private JFormattedTextField tfPreco;
 	private JComboBox cbTipo;
