@@ -137,7 +137,10 @@ public class ButtonsController implements ActionListener{
 			if (selectedRow != -1) {
 				String id = (String) tbEstoque.getValueAt(selectedRow, 0);
 				int idint = Integer.parseInt(id);
-				new ManipuladorDel().tratarRequisicao(cmd, idint, telaEstoque);
+				ManipuladorDel manipulador1 = new ManipuladorDel();
+				ManipuladorCopy manipulador2 = new ManipuladorCopy();
+				manipulador1.definirProximo(manipulador2);
+				manipulador1.tratarRequisicao(cmd, idint, telaEstoque, tbEstoque);
 			}
 			else {
 				JOptionPane.showMessageDialog(null, "Nenhum item selecionado.");

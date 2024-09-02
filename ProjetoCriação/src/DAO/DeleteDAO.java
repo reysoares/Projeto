@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import Controller.ButtonsController;
 
 
-public class DeleteProduto {
+public class DeleteDAO {
 	
 
 	public void deletarItem(int id) {

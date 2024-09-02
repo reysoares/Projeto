@@ -30,6 +30,7 @@ public class TabelaDAO {
             
             rs.close();
             stmt.close();
+ 
             
         } catch (SQLException e) {
             e.printStackTrace(); // Log or handle the SQL exception
