@@ -13,10 +13,12 @@ import java.awt.Cursor;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.JList;
 
 public class TelaEstoque extends JFrame {
 
@@ -24,7 +26,7 @@ public class TelaEstoque extends JFrame {
 	private JPanel contentPane;
 	private JTable tbEstoque;
 
-	public TelaEstoque() {
+	public TelaEstoque(List<String[]> tabela) {
 		
 		setTitle("Estoque de Produtos");
 		setVisible(true);
@@ -44,7 +46,6 @@ public class TelaEstoque extends JFrame {
 		btnVoltar.setBounds(457, 142, 187, 23);
 		contentPane.add(btnVoltar);
 		
-		List<String[]> tabela = TabelaDAO.getTabela();
 		String[] columnNames = {"id", "Nome", "Tipo", " Preço"};
 		
 		
@@ -53,26 +54,16 @@ public class TelaEstoque extends JFrame {
 		tbEstoque.setBounds(36, 224, 608, 230);
 		contentPane.add(tbEstoque);
 		
+		JScrollPane scrollPane = new JScrollPane(tbEstoque);
+		scrollPane.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+        scrollPane.setBounds(36, 190, 608, 264); // Define as dimensões e a posição do JScrollPane
+        contentPane.add(scrollPane); // Adiciona o JScrollPane ao contentPane
+		
 		JLabel lblEstoque = new JLabel("ESTOQUE DE PRODUTOS");
 		lblEstoque.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		lblEstoque.setBounds(204, 43, 326, 73);
 		contentPane.add(lblEstoque);
 		
-		JLabel lblNewLabel = new JLabel("Preço R$");
-		lblNewLabel.setBounds(545, 209, 61, 14);
-		contentPane.add(lblNewLabel);
-		
-		JLabel lblMarcasabor = new JLabel("Marca/Sabor");
-		lblMarcasabor.setBounds(388, 209, 75, 14);
-		contentPane.add(lblMarcasabor);
-		
-		JLabel lblNome = new JLabel("Nome");
-		lblNome.setBounds(241, 209, 46, 14);
-		contentPane.add(lblNome);
-		
-		JLabel lblId = new JLabel("ID Produto");
-		lblId.setBounds(85, 209, 61, 14);
-		contentPane.add(lblId);
 		
 		ButtonsController btnController = new ButtonsController();
 		btnController.setTelaEstoque(this);

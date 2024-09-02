@@ -24,7 +24,7 @@ public class ButtonsController implements ActionListener{
 	FabricaHigiene factory = new FabricaHigiene();
 	PizzaDAO pizzaBuilder = new PizzaDAO();
 	SorveteDAO sorveteBuilder = new SorveteDAO();
-
+	
 	
 	//Telas
 	private TelaCriacao telaCriacao;
@@ -68,7 +68,8 @@ public class ButtonsController implements ActionListener{
 			new TelaCremeDental().setLocationRelativeTo(null);
 		}
 		if(cmd.equals("openEstoque")){
-			new TelaEstoque().setLocationRelativeTo(null);
+			List<String[]> tabela = TabelaDAO.getTabela();
+			new TelaEstoque(tabela).setLocationRelativeTo(null);
 		}
 		
 		//Fechar as telas
@@ -85,7 +86,7 @@ public class ButtonsController implements ActionListener{
 			telaCreme.dispose();
 		}
 		if(cmd.equals("VoltarEstoque")) {
-			telaEstoque.setVisible(false);
+			telaEstoque.dispose();
 		}
 		
 		//Criar Produtos
