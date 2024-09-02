@@ -19,6 +19,8 @@ import javax.swing.border.BevelBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JList;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class TelaEstoque extends JFrame {
 
@@ -43,7 +45,7 @@ public class TelaEstoque extends JFrame {
 		btnVoltar.setBorderPainted(false);
 		btnVoltar.setBackground(Color.LIGHT_GRAY);
 		btnVoltar.setActionCommand("VoltarEstoque");
-		btnVoltar.setBounds(457, 142, 187, 23);
+		btnVoltar.setBounds(507, 142, 137, 23);
 		contentPane.add(btnVoltar);
 		
 		String[] columnNames = {"id", "Nome", "Tipo", " Preço"};
@@ -56,18 +58,47 @@ public class TelaEstoque extends JFrame {
 		
 		JScrollPane scrollPane = new JScrollPane(tbEstoque);
 		scrollPane.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-        scrollPane.setBounds(36, 190, 608, 264); // Define as dimensões e a posição do JScrollPane
-        contentPane.add(scrollPane); // Adiciona o JScrollPane ao contentPane
+        scrollPane.setBounds(36, 190, 608, 264); 
+        contentPane.add(scrollPane);
 		
 		JLabel lblEstoque = new JLabel("ESTOQUE DE PRODUTOS");
 		lblEstoque.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		lblEstoque.setBounds(204, 43, 326, 73);
 		contentPane.add(lblEstoque);
 		
+		JButton btnDeletarItem = new JButton("Deletar Item");
+		btnDeletarItem.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnDeletarItem.setBorderPainted(false);
+		btnDeletarItem.setBackground(Color.LIGHT_GRAY);
+		btnDeletarItem.setActionCommand("Deletar");
+		btnDeletarItem.setBounds(360, 142, 137, 23);
+		contentPane.add(btnDeletarItem);
+		
+		JButton btnClonar = new JButton("Clonar Item");
+		btnClonar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnClonar.setBorderPainted(false);
+		btnClonar.setBackground(Color.LIGHT_GRAY);
+		btnClonar.setActionCommand("Clonar");
+		btnClonar.setBounds(213, 142, 137, 23);
+		contentPane.add(btnClonar);
+		
+		JComboBox cbFiltrar = new JComboBox();
+		cbFiltrar.setModel(new DefaultComboBoxModel(new String[] {"Mais antigos", "Mais recentes"}));
+		cbFiltrar.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		cbFiltrar.setBounds(82, 142, 121, 23);
+		contentPane.add(cbFiltrar);
+		
+		JLabel lblExibir = new JLabel("Exibir:");
+		lblExibir.setBounds(36, 146, 46, 14);
+		contentPane.add(lblExibir);
+		
 		
 		ButtonsController btnController = new ButtonsController();
 		btnController.setTelaEstoque(this);
+		btnController.setTbEstoque(tbEstoque);
 		
 		btnVoltar.addActionListener(btnController);
+		btnDeletarItem.addActionListener(btnController);
+		btnClonar.addActionListener(btnController);
 	}
 }

@@ -4,6 +4,7 @@ package DAO;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import Controller.ButtonsController;
 import Entity.Produto;
 import view.Observador;
 
@@ -24,7 +25,7 @@ public class ProdutoDAO {
 			ps.execute();
 			ps.close();
 			
-			new Observador().notificar(produto);
+			new ButtonsController().notificarProdutoAdicionado(produto);
 
 		}catch (SQLException e){
 			e.printStackTrace();

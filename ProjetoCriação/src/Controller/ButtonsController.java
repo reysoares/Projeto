@@ -7,13 +7,17 @@ import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+
 import DAO.FabricaHigiene;
 import DAO.PizzaDAO;
 import DAO.SorveteDAO;
 import DAO.TabelaDAO;
+import Entity.Produto;
 import view.TelaPizza;
 import view.TelaShampoo;
 import view.TelaSorvete;
+import view.Observador;
 import view.TelaCremeDental;
 import view.TelaCriacao;
 import view.TelaEstoque;
@@ -24,6 +28,7 @@ public class ButtonsController implements ActionListener{
 	FabricaHigiene factory = new FabricaHigiene();
 	PizzaDAO pizzaBuilder = new PizzaDAO();
 	SorveteDAO sorveteBuilder = new SorveteDAO();
+	Observador observer = new Observador();
 	
 	
 	//Telas
@@ -46,6 +51,9 @@ public class ButtonsController implements ActionListener{
 	//Elementos do Sorvete
 	private JComboBox cbCalda;
 	private JComboBox cbGranulado;
+	
+	//Elementos tel de Estoque
+	private JTable tbEstoque;
 	
 	
 
@@ -122,6 +130,28 @@ public class ButtonsController implements ActionListener{
 				JOptionPane.showMessageDialog(null, "Insira o preço!");
 			}
 		}
+		
+		// Deletar e Clonar item do Estoque
+		if(cmd.equals("Deletar") || cmd.equals("Clonar")) {
+			int selectedRow = tbEstoque.getSelectedRow();
+			if (selectedRow != -1) {
+				String id = (String) tbEstoque.getValueAt(selectedRow, 0);
+				int idint = Integer.parseInt(id);
+				new ManipuladorDel().tratarRequisicao(cmd, idint, telaEstoque);
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "Nenhum item selecionado.");
+			}
+		}
+	}
+	
+	//Metodo para notificar
+	public void notificarProdutoAdicionado(Produto p) {
+		observer.notificarAdd(p);
+	}
+	
+	public void notificarDel() {
+		observer.notificarDel();
 	}
 	
 	//setar As telas como atributos
@@ -145,6 +175,14 @@ public class ButtonsController implements ActionListener{
 	//setar alementos das telas
 	public JFormattedTextField getTfPreco() {
 		return tfPreco;
+	}
+
+	public JTable getTbEstoque() {
+		return tbEstoque;
+	}
+
+	public void setTbEstoque(JTable tbEstoque) {
+		this.tbEstoque = tbEstoque;
 	}
 
 	public void setTfPreco(JFormattedTextField tfPreco) {
