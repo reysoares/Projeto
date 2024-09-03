@@ -49,8 +49,9 @@ public class TelaEstoque extends JFrame {
 		contentPane.add(btnVoltar);
 		
 		String[] columnNames = {"id", "Nome", "Tipo", " Preço"};
+		NonEditableTableModel model = new NonEditableTableModel(tabela.toArray(new String[0][0]), columnNames);
 		
-		tbEstoque = new JTable(tabela.toArray(new String[0][0]), columnNames);
+		tbEstoque = new JTable(model);
 		tbEstoque.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		tbEstoque.setBounds(36, 224, 608, 230);
 		contentPane.add(tbEstoque);

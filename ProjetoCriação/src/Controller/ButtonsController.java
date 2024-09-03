@@ -16,6 +16,7 @@ import Entity.Produto;
 import view.TelaPizza;
 import view.TelaShampoo;
 import view.TelaSorvete;
+import view.NonEditableTableModel;
 import view.Observador;
 import view.TelaCremeDental;
 import view.TelaCriacao;
@@ -179,7 +180,8 @@ public class ButtonsController implements ActionListener{
 	public void atualizar() {
 		String[] columnNames = {"id", "Nome", "Tipo", "Preço"};
 		List<String[]> novaTabela = TabelaDAO.getTabela(estrategia);
-		tbEstoque.setModel(new DefaultTableModel(novaTabela.toArray(new String[0][0]), columnNames));
+		NonEditableTableModel model = new NonEditableTableModel(novaTabela.toArray(new String[0][0]), columnNames);
+		tbEstoque.setModel(model);
 	}
 	//Metodo para notificar
 	public void notificarProdutoAdicionado(Produto p) {
