@@ -77,7 +77,7 @@ public class TelaPizza extends JFrame {
 		JComboBox cbSaborPizza = new JComboBox();
 		cbSaborPizza.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		cbSaborPizza.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		cbSaborPizza.setModel(new DefaultComboBoxModel(new String[] {"Calabresa", "Catupury"}));
+		cbSaborPizza.setModel(new DefaultComboBoxModel(new String[] {"Calabresa", "Frango", "Queijo", "Marguerita", "Vegetariana"}));
 		cbSaborPizza.setBounds(115, 190, 106, 22);
 		contentPane.add(cbSaborPizza);
 
