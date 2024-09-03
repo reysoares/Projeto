@@ -10,5 +10,5 @@ public abstract class Manipulador {
 		this.proximo=proximo;
 	}
 	
-	public abstract void tratarRequisicao(String cmd, int id, StrategyOrdenacao estrategia, JTable tbEstoque);
+	public abstract void tratarRequisicao(String cmd, int id, JTable tbEstoque);
 }

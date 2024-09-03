@@ -3,13 +3,11 @@ package Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
 import DAO.FabricaHigiene;
 import DAO.PizzaDAO;
 import DAO.SorveteDAO;
@@ -159,7 +157,7 @@ public class ButtonsController implements ActionListener{
 				ManipuladorDel manipulador1 = new ManipuladorDel();
 				ManipuladorCopy manipulador2 = new ManipuladorCopy();
 				manipulador1.definirProximo(manipulador2);
-				manipulador1.tratarRequisicao(cmd, idint, estrategia, tbEstoque);
+				manipulador1.tratarRequisicao(cmd, idint, tbEstoque);
 			}
 			else {
 				JOptionPane.showMessageDialog(null, "Nenhum item selecionado.");
@@ -179,8 +177,8 @@ public class ButtonsController implements ActionListener{
 	
 	}
 	public void atualizar() {
-		List<String[]> novaTabela = TabelaDAO.getTabela(estrategia);
 		String[] columnNames = {"id", "Nome", "Tipo", "Preço"};
+		List<String[]> novaTabela = TabelaDAO.getTabela(estrategia);
 		tbEstoque.setModel(new DefaultTableModel(novaTabela.toArray(new String[0][0]), columnNames));
 	}
 	//Metodo para notificar
