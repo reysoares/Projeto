@@ -119,7 +119,7 @@ public class TelaSorvete extends JFrame {
 		ftPreco.setBounds(115, 239, 61, 20);
 		contentPane.add(ftPreco);
 		
-		ButtonsController btnController = new ButtonsController();
+		ButtonsController btnController = ButtonsController.getInstance();
 		
 		btnController.setTelaSorvete(this);
 		btnController.setCbTipo(cbSaborSorvete);

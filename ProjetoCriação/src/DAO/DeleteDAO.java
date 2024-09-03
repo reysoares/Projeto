@@ -24,7 +24,7 @@ public class DeleteDAO {
  
 	        int rowsAffected = statement.executeUpdate();
 	        if (rowsAffected > 0) {
-	            new ButtonsController().notificarDel();
+	            ButtonsController.getInstance().notificarDel();
 	        } else {
 	            System.out.println("Nenhum item encontrado com o ID fornecido.");
 	        }

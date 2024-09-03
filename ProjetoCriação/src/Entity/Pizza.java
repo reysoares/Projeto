@@ -2,24 +2,9 @@ package Entity;
 
 public class Pizza extends Produto{
 		
-	//Clonador
-	@Override
-	public Produto clonar() {
-		return new Pizza(this.massa, this.molho, super.getTipo(), super.getPreco());
-	}
 	//Atributos
 	private String massa;
 	private String molho;
-	
-	//Construtor clone
-	public Pizza(String massa, String molho, String sabor, double preco) {
-		this.massa=massa;
-		this.molho=molho;
-		super.setTipo(sabor);
-		super.setPreco(preco);
-		super.setNome("Pizza");
-		
-	}
 	
 	//Construtor Builder
 	private Pizza(Builder builder) {

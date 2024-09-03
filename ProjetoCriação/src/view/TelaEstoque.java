@@ -50,7 +50,6 @@ public class TelaEstoque extends JFrame {
 		
 		String[] columnNames = {"id", "Nome", "Tipo", " Preço"};
 		
-		
 		tbEstoque = new JTable(tabela.toArray(new String[0][0]), columnNames);
 		tbEstoque.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		tbEstoque.setBounds(36, 224, 608, 230);
@@ -83,6 +82,7 @@ public class TelaEstoque extends JFrame {
 		contentPane.add(btnClonar);
 		
 		JComboBox cbFiltrar = new JComboBox();
+		cbFiltrar.setActionCommand("AlterarFiltro");
 		cbFiltrar.setModel(new DefaultComboBoxModel(new String[] {"Mais antigos", "Mais recentes"}));
 		cbFiltrar.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		cbFiltrar.setBounds(82, 142, 121, 23);
@@ -93,12 +93,14 @@ public class TelaEstoque extends JFrame {
 		contentPane.add(lblExibir);
 		
 		
-		ButtonsController btnController = new ButtonsController();
+		ButtonsController btnController = ButtonsController.getInstance();
 		btnController.setTelaEstoque(this);
 		btnController.setTbEstoque(tbEstoque);
+		btnController.setCbFiltrar(cbFiltrar);
 		
 		btnVoltar.addActionListener(btnController);
 		btnDeletarItem.addActionListener(btnController);
 		btnClonar.addActionListener(btnController);
+		cbFiltrar.addActionListener(btnController);
 	}
 }

@@ -12,4 +12,7 @@ public class Observador {
 	public void notificarDel() {
 		JOptionPane.showMessageDialog(null, "Item deletado com sucesso!");
 	}
+	public void notificarCopy() {
+		JOptionPane.showMessageDialog(null, "Item Clonado com sucesso!");
+	}
 }

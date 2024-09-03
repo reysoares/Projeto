@@ -8,11 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import Controller.StrategyOrdenacao;
+
 public class TabelaDAO {
 
-    public static List<String[]> getTabela() {
+    public static List<String[]> getTabela(StrategyOrdenacao strategy) {
         List<String[]> data = new ArrayList<>();
-        String sql = "SELECT * FROM projetopoo.produtos";
+        String sql = "SELECT * FROM projetopoo.produtos"+strategy.formaDeOrdenar();
 
         try {
         	Connection conn = Conexao.getConexao();

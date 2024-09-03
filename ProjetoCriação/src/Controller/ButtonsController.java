@@ -8,6 +8,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import DAO.FabricaHigiene;
 import DAO.PizzaDAO;
@@ -24,11 +25,23 @@ import view.TelaEstoque;
 
 public class ButtonsController implements ActionListener{
 	
+	private static ButtonsController instance;
+	
+	private ButtonsController() {}
+	
+	public static ButtonsController getInstance(){
+		if(instance==null) {
+			instance=new ButtonsController();
+		}
+		return instance;
+	}
+	
 	//Objetos Dao
 	FabricaHigiene factory = new FabricaHigiene();
 	PizzaDAO pizzaBuilder = new PizzaDAO();
 	SorveteDAO sorveteBuilder = new SorveteDAO();
 	Observador observer = new Observador();
+	private StrategyOrdenacao estrategia = new OrdenacaoCrescente();
 	
 	
 	//Telas
@@ -54,6 +67,7 @@ public class ButtonsController implements ActionListener{
 	
 	//Elementos tel de Estoque
 	private JTable tbEstoque;
+	private JComboBox cbFiltrar;
 	
 	
 
@@ -76,8 +90,13 @@ public class ButtonsController implements ActionListener{
 			new TelaCremeDental().setLocationRelativeTo(null);
 		}
 		if(cmd.equals("openEstoque")){
-			List<String[]> tabela = TabelaDAO.getTabela();
-			new TelaEstoque(tabela).setLocationRelativeTo(null);
+			if(telaEstoque==null) {
+				List<String[]> tabela = TabelaDAO.getTabela(estrategia);
+				new TelaEstoque(tabela).setLocationRelativeTo(null);
+			}else {
+				atualizar();
+				telaEstoque.setVisible(true);
+			}
 		}
 		
 		//Fechar as telas
@@ -94,7 +113,7 @@ public class ButtonsController implements ActionListener{
 			telaCreme.dispose();
 		}
 		if(cmd.equals("VoltarEstoque")) {
-			telaEstoque.dispose();
+			telaEstoque.setVisible(false);
 		}
 		
 		//Criar Produtos
@@ -140,14 +159,30 @@ public class ButtonsController implements ActionListener{
 				ManipuladorDel manipulador1 = new ManipuladorDel();
 				ManipuladorCopy manipulador2 = new ManipuladorCopy();
 				manipulador1.definirProximo(manipulador2);
-				manipulador1.tratarRequisicao(cmd, idint, telaEstoque, tbEstoque);
+				manipulador1.tratarRequisicao(cmd, idint, estrategia, tbEstoque);
 			}
 			else {
 				JOptionPane.showMessageDialog(null, "Nenhum item selecionado.");
 			}
 		}
-	}
+		//Ordem recente ou antigo
+		if(cmd.equals("AlterarFiltro")) {
+			String ordemSelecionada = (String) cbFiltrar.getSelectedItem();
+			if(ordemSelecionada.equals("Mais antigos")) {
+				setEstrategia(new OrdenacaoCrescente());
+				atualizar();
+			}else {
+				setEstrategia(new OrdenacaoDecrescente());
+				atualizar();
+			}
+		}
 	
+	}
+	public void atualizar() {
+		List<String[]> novaTabela = TabelaDAO.getTabela(estrategia);
+		String[] columnNames = {"id", "Nome", "Tipo", "Preço"};
+		tbEstoque.setModel(new DefaultTableModel(novaTabela.toArray(new String[0][0]), columnNames));
+	}
 	//Metodo para notificar
 	public void notificarProdutoAdicionado(Produto p) {
 		observer.notificarAdd(p);
@@ -156,11 +191,23 @@ public class ButtonsController implements ActionListener{
 	public void notificarDel() {
 		observer.notificarDel();
 	}
+	public void notificarClone() {
+		observer.notificarCopy();
+	}
+	//Definir estrategia de ordenação da tabela de estoque
+	public StrategyOrdenacao getEstrategia() {
+		return estrategia;
+	}
+
+	public void setEstrategia(StrategyOrdenacao estrategia) {
+		this.estrategia = estrategia;
+	}
 	
 	//setar As telas como atributos
 	public void setTelaCriacao(TelaCriacao t) {
 		this.telaCriacao=t;
 	}
+
 	public void setTelaPizza(TelaPizza telaPizza) {
 		this.telaPizza = telaPizza;
 	}
@@ -238,6 +285,14 @@ public class ButtonsController implements ActionListener{
 
 	public void setTelaEstoque(TelaEstoque telaEstoque) {
 		this.telaEstoque = telaEstoque;
+	}
+
+	public JComboBox getCbFiltrar() {
+		return cbFiltrar;
+	}
+
+	public void setCbFiltrar(JComboBox cbFiltrar) {
+		this.cbFiltrar = cbFiltrar;
 	}
 
 

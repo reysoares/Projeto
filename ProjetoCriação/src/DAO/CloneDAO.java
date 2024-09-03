@@ -6,6 +6,8 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
+import Controller.ButtonsController;
+
 public class CloneDAO {
 	
 	public static void  clonarItem(int idProduto, String nome, String tipo, Double preco) {
@@ -21,7 +23,7 @@ public class CloneDAO {
 
             pstmt.executeUpdate();
             pstmt.close();
-            JOptionPane.showMessageDialog(null, "Item clonado com sucesso!");
+            ButtonsController.getInstance().notificarClone();
 
         } catch (SQLException e) {
             e.printStackTrace();

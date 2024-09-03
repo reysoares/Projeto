@@ -1,6 +1,5 @@
 package Controller;
 
-import javax.swing.JFrame;
 import javax.swing.JTable;
 
 public abstract class Manipulador {
@@ -11,5 +10,5 @@ public abstract class Manipulador {
 		this.proximo=proximo;
 	}
 	
-	public abstract void tratarRequisicao(String cmd, int id, JFrame telaEstoque, JTable tbEstoque);
+	public abstract void tratarRequisicao(String cmd, int id, StrategyOrdenacao estrategia, JTable tbEstoque);
 }

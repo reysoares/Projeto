@@ -121,7 +121,7 @@ public class TelaPizza extends JFrame {
 
 		//comunicação com controller
 
-		ButtonsController btnController = new ButtonsController();
+		ButtonsController btnController = ButtonsController.getInstance();
 
 		btnController.setTelaPizza(this);
 		btnController.setTfPreco(ftPreco);

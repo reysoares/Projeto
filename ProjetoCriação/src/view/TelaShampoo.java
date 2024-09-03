@@ -95,7 +95,7 @@ public class TelaShampoo extends JFrame {
 		contentPane.add(lblR$);
 		
 		//instancia de um Controller
-		ButtonsController btnController = new ButtonsController();
+		ButtonsController btnController = ButtonsController.getInstance();
 		btnController.setTelaShampoo(this);
 		//mandar ação do botão para o controller
 		btnVoltar.addActionListener(btnController);

@@ -7,9 +7,6 @@ public abstract class Produto {
 	private String nome;
 	private String tipo;
 	
-	//Prototype
-	public abstract Produto clonar();
-	
 	//Gets e Sets
 	public double getPreco() {
 		return preco;

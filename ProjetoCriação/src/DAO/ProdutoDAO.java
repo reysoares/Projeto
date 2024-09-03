@@ -25,7 +25,7 @@ public class ProdutoDAO {
 			ps.execute();
 			ps.close();
 			
-			new ButtonsController().notificarProdutoAdicionado(produto);
+			ButtonsController.getInstance().notificarProdutoAdicionado(produto);
 
 		}catch (SQLException e){
 			e.printStackTrace();

@@ -100,7 +100,7 @@ public class TelaCriacao extends JFrame {
 		contentPane.add(lblProdutos);
 		
 		//Instanciar um controlador na tela
-		ButtonsController btnController = new ButtonsController();
+		ButtonsController btnController = ButtonsController.getInstance();
 		btnController.setTelaCriacao(this);
 		
 		//Mandar ação para o Controller
